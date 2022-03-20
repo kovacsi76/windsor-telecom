@@ -12,21 +12,21 @@ use Doctrine\Persistence\ObjectManager;
 
 class AppFixtures extends Fixture
 {
-    protected array $clients = [
+    public const CLIENTS = [
         'Company A' => ['name' => 'Company A', 'email' => 'ceo@company_a.co.uk'],
         'Company Z' => ['name' => 'Company Z', 'email' => 'buyer@company_z.co.uk'],
         'A Person' => ['name' => 'A Person', 'email' => 'a.person@gmail.com'],
     ];
-    protected array $products = [
+    public const PRODUCTS = [
         'SIP trunks' => ['name' => 'SIP trunks'],
         'Broadband' => ['name' => 'Broadband'],
         'Phone numbers' => ['name' => 'Phone numbers'],
     ];
-    protected array $types = [
+    public const TYPES = [
         'Free trial' => ['name' => 'Free trial'],
         'Contract' => ['name' => 'Contract'],
     ];
-    protected array $stages = [
+    public const STAGES = [
         'Created' => ['name' => 'Created'],
         'Approved' => ['name' => 'Approved'],
         'Signed' => ['name' => 'Signed'],
@@ -35,7 +35,7 @@ class AppFixtures extends Fixture
         'Expired' => ['name' => 'Expired'],
     ];
 
-    protected array $orders = [
+    public const ORDERS = [
         'order 1' => [
             'client' => 'Company A',
             'product' => 'SIP trunks',
@@ -79,7 +79,7 @@ class AppFixtures extends Fixture
                 $manager->persist($client);
                 return $client;
             },
-            $this->clients
+            self::CLIENTS
         );
 
         $products = array_map(
@@ -89,7 +89,7 @@ class AppFixtures extends Fixture
                 $manager->persist($product);
                 return $product;
             },
-            $this->products
+            self::PRODUCTS
         );
 
         $types = array_map(
@@ -99,7 +99,7 @@ class AppFixtures extends Fixture
                 $manager->persist($type);
                 return $type;
             },
-            $this->types
+            self::TYPES
         );
 
         $stages = array_map(
@@ -109,7 +109,7 @@ class AppFixtures extends Fixture
                 $manager->persist($stage);
                 return $stage;
             },
-            $this->stages
+            self::STAGES
         );
 
         $orders = array_map(
@@ -123,7 +123,7 @@ class AppFixtures extends Fixture
                 $manager->persist($order);
                 return $order;
             },
-            $this->orders
+            self::ORDERS
         );
 
         $manager->flush();
